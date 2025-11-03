@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Plus, ShoppingCart, Package, Layers, ChevronRight, Upload, CheckCircle, X } from 'lucide-react';
+import { Plus, ShoppingCart, Package, Layers, ChevronRight, Upload, CheckCircle, X, Truck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -166,7 +166,7 @@ export default function LoadRequestGrid() {
                   <CheckCircle className="w-12 h-12 text-green-600" />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  Order Created Successfully!
+                  Load Created Successfully!
                 </h2>
                 <p className="text-gray-600 mb-6">
                   Your load request has been submitted successfully. You will receive a confirmation shortly.
@@ -206,6 +206,19 @@ export default function LoadRequestGrid() {
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border p-3 sm:p-4 md:p-6 mb-4 md:mb-6">
           <div className="flex flex-col gap-3 sm:gap-4">
+            {/* Vehicle Info */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="bg-blue-100 rounded-lg p-2 shrink-0">
+                  <Truck className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-xs text-blue-600 font-medium">Vehicle Number</p>
+                  <p className="text-sm sm:text-base font-bold text-blue-900">UP12TY1243</p>
+                </div>
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
               <div className="flex items-start gap-2 sm:gap-3">
                 <div className="bg-gray-100 rounded-lg p-2 sm:p-3 shrink-0">
@@ -240,10 +253,10 @@ export default function LoadRequestGrid() {
           <div className="flex border-b overflow-x-auto">
             <button
               onClick={() => setActiveTab('commercial')}
-              className={`flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap relative ${
                 activeTab === 'commercial'
-                  ? 'border-b-2 border-black text-black'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'border-b-2 border-[rgb(160,139,92)] text-gray-900 bg-[rgb(160,139,92)]/5'
+                  : 'text-gray-600 hover:text-[rgb(160,139,92)] hover:bg-gray-50'
               }`}
             >
               <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -251,10 +264,10 @@ export default function LoadRequestGrid() {
             </button>
             <button
               onClick={() => setActiveTab('posm')}
-              className={`flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap relative ${
                 activeTab === 'posm'
-                  ? 'border-b-2 border-black text-black'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'border-b-2 border-[rgb(160,139,92)] text-gray-900 bg-[rgb(160,139,92)]/5'
+                  : 'text-gray-600 hover:text-[rgb(160,139,92)] hover:bg-gray-50'
               }`}
             >
               <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -271,26 +284,26 @@ export default function LoadRequestGrid() {
                 <div className="flex-1">
                   <div className="text-xs font-medium text-gray-500 mb-1">{item.sku}</div>
                   <div className="font-semibold text-gray-900 text-sm mb-2">{item.product_name}</div>
-                  <Badge variant="outline" className="text-xs">{item.uom}</Badge>
+                  <Badge variant="outline" className="text-xs border-[rgb(160,139,92)] text-[rgb(160,139,92)]">{item.uom}</Badge>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-3">
                 <div>
                   <div className="text-xs text-gray-500 mb-1 flex items-center gap-1">
-                    <ChevronRight className="w-3 h-3" />
+                    <ChevronRight className="w-3 h-3 text-[rgb(160,139,92)]" />
                     Recommended
                   </div>
-                  <Button variant="outline" size="sm" className="w-full text-xs h-8">
+                  <Button variant="outline" size="sm" className="w-full text-xs h-8 border-[rgb(160,139,92)]/30 hover:border-[rgb(160,139,92)] hover:bg-[rgb(160,139,92)]/5">
                     {item.recommended}
                   </Button>
                 </div>
                 <div>
                   <div className="text-xs text-gray-500 mb-1 flex items-center gap-1">
-                    <Package className="w-3 h-3" />
+                    <Package className="w-3 h-3 text-[rgb(160,139,92)]" />
                     Pre-Order
                   </div>
-                  <Button variant="outline" size="sm" className="w-full text-xs h-8">
+                  <Button variant="outline" size="sm" className="w-full text-xs h-8 border-[rgb(160,139,92)]/30 hover:border-[rgb(160,139,92)] hover:bg-[rgb(160,139,92)]/5">
                     {item.preOrder}
                   </Button>
                 </div>
@@ -299,22 +312,22 @@ export default function LoadRequestGrid() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <div className="text-xs text-gray-500 mb-1 flex items-center gap-1">
-                    <Plus className="w-3 h-3" />
+                    <Plus className="w-3 h-3 text-[rgb(160,139,92)]" />
                     Buffer Adj.
                   </div>
                   <Input
                     type="number"
                     value={item.bufferAdj}
-                    className="w-full text-center text-xs h-8"
+                    className="w-full text-center text-xs h-8 border-[rgb(160,139,92)]/30 focus:border-[rgb(160,139,92)]"
                     readOnly
                   />
                 </div>
                 <div>
                   <div className="text-xs text-gray-500 mb-1 flex items-center gap-1">
-                    <Package className="w-3 h-3" />
+                    <Package className="w-3 h-3 text-white" />
                     Total Qty
                   </div>
-                  <Button className="bg-black hover:bg-gray-800 text-white w-full text-xs h-8">
+                  <Button className="bg-[rgb(160,139,92)] hover:bg-[rgb(140,119,72)] text-white w-full text-xs h-8">
                     {item.totalQty} PCS
                   </Button>
                 </div>
@@ -369,13 +382,13 @@ export default function LoadRequestGrid() {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <Button variant="outline" size="sm" className="font-medium text-xs">
+                      <Button variant="outline" size="sm" className="font-medium text-xs border-[rgb(160,139,92)]/30 hover:border-[rgb(160,139,92)] hover:bg-[rgb(160,139,92)]/5">
                         {item.recommended}
                         <ChevronRight className="w-3.5 h-3.5 ml-1" />
                       </Button>
                     </TableCell>
                     <TableCell>
-                      <Button variant="outline" size="sm" className="font-medium text-xs">
+                      <Button variant="outline" size="sm" className="font-medium text-xs border-[rgb(160,139,92)]/30 hover:border-[rgb(160,139,92)] hover:bg-[rgb(160,139,92)]/5">
                         {item.preOrder}
                         <ChevronRight className="w-3.5 h-3.5 ml-1" />
                       </Button>
@@ -384,13 +397,13 @@ export default function LoadRequestGrid() {
                       <Input
                         type="number"
                         value={item.bufferAdj}
-                        className="w-20 text-center text-sm"
+                        className="w-20 text-center text-sm border-[rgb(160,139,92)]/30 focus:border-[rgb(160,139,92)]"
                         readOnly
                       />
                     </TableCell>
                     <TableCell>
                       <Button
-                        className="bg-black hover:bg-gray-800 text-white font-medium text-xs"
+                        className="bg-[rgb(160,139,92)] hover:bg-[rgb(140,119,72)] text-white font-medium text-xs"
                         size="sm"
                       >
                         {item.totalQty} PCS
@@ -453,18 +466,18 @@ export default function LoadRequestGrid() {
 
         {/* Action Buttons */}
         <div className="mt-4 md:mt-6 flex flex-col sm:flex-row gap-2 sm:gap-3">
-          <Button variant="outline" className="flex items-center justify-center gap-2 text-xs sm:text-sm h-9 sm:h-10">
+          <Button variant="outline" className="flex items-center justify-center gap-2 text-xs sm:text-sm h-9 sm:h-10 border-[rgb(160,139,92)]/30 hover:border-[rgb(160,139,92)] hover:bg-[rgb(160,139,92)]/5 hover:text-[rgb(160,139,92)]">
             <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             {activeTab === 'commercial' ? 'Add Commercial Item' : 'Add POSM Item'}
           </Button>
-          <Button variant="outline" className="flex items-center justify-center gap-2 text-xs sm:text-sm h-9 sm:h-10">
+          <Button variant="outline" className="flex items-center justify-center gap-2 text-xs sm:text-sm h-9 sm:h-10 border-[rgb(160,139,92)]/30 hover:border-[rgb(160,139,92)] hover:bg-[rgb(160,139,92)]/5 hover:text-[rgb(160,139,92)]">
             <Upload className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             Import Items
           </Button>
           {activeTab === 'commercial' ? (
             <Button
               onClick={handleNextToPOSM}
-              className="bg-black hover:bg-gray-800 text-white flex items-center justify-center gap-2 text-xs sm:text-sm h-9 sm:h-10"
+              className="bg-[rgb(160,139,92)] hover:bg-[rgb(140,119,72)] text-white flex items-center justify-center gap-2 text-xs sm:text-sm h-9 sm:h-10"
             >
               <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               Next: POSM Items
@@ -472,10 +485,10 @@ export default function LoadRequestGrid() {
           ) : (
             <Button
               onClick={handleCreateOrder}
-              className="bg-black hover:bg-gray-800 text-white flex items-center justify-center gap-2 text-xs sm:text-sm h-9 sm:h-10"
+              className="bg-[rgb(160,139,92)] hover:bg-[rgb(140,119,72)] text-white flex items-center justify-center gap-2 text-xs sm:text-sm h-9 sm:h-10"
             >
               <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              Create Order
+              Create Load
             </Button>
           )}
         </div>
